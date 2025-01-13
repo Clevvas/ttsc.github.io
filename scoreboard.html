@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scoreboard</title>
+  <style>
+    /* Example style for your scoreboard overlay. Adjust as you like. */
+    body {
+      background-color: #00ff00; /* Green for Chroma Key, if desired */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .scoreboard {
+      display: flex;
+      gap: 30px;
+      background-color: rgba(0, 0, 0, 0.9);
+      border-radius: 20px;
+      padding: 20px 30px;
+    }
+    .player-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    .player-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .player-lives {
+      font-size: 1.2rem;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="scoreboard" class="scoreboard">
+    <!-- Player cards will be created by JS in real-time -->
+  </div>
+
+  <!-- Firebase from the CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-database

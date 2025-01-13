@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+</head>
+<body>
+  <h1>Admin: Update Scoreboard</h1>
+
+  <!-- Simple form for 2 players (just for example). You can do 8. -->
+  <div>
+    <label>Player 1 Name:</label>
+    <input id="p1-name" type="text" value="Player 1">
+    <label>Lives:</label>
+    <input id="p1-lives" type="number" value="3">
+  </div>
+
+  <div>
+    <label>Player 2 Name:</label>
+    <input id="p2-name" type="text" value="Player 2">
+    <label>Lives:</label>
+    <input id="p2-lives" type="number" value="3">
+  </div>
+
+  <!-- Add more players as needed -->
+
+  <button onclick="saveData()">Save</button>
+
+  <!-- 1) Include Firebase from the CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-database-compat.js"></script>
+  
+  <script>
+    // 2) Your Firebase config (paste in what you got from the console)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "ttsc-44fed.firebaseapp.com",
+      databaseURL: "https://ttsc-44fed.firebaseio.com",  // If you see it in your config
+      projectId: "ttsc-44fed",
+      storageBucket: "ttsc-44fed.appspot.com",
+      messagingSenderId: "444790608663",
+      appId: "1:444790608663:web:8f1c18cfd5693b15af5d52",
+      measurementId: "G-K81Z29T3J2"
+    };
+
+    // 3) Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // 4) Get reference to Realtime Database
+    const db = firebase.database();
+
+    // 5) Save data function
+    function saveData() {
+      const scoreboardData = {
+        players: [
+          {
+            name: document.getElementById('p1-name').value,
+            lives: parseInt(document.getElementById('p1-lives').value, 10)
+          },
+          {
+            name: document.getElementById('p2-name').value,
+            lives: parseInt(document.getElementById('p2-lives').value, 10)
+          }
+          // Add more if you have them
+        ]
+      };
+
+      // Write to the path 'scoreboard' in Realtime Database
+      db.ref('scoreboard').set(scoreboardData)
+        .then(() => {
+          alert('Scoreboard updated successfully!');
+        })
+        .catch(err => {
+          alert('Error: ' + err);
+        });
+    }
+  </script>
+</body>
+</html>
